@@ -11,6 +11,7 @@ function App() {
     phone: '',
     github: '',
     linkedin: '',
+    palette: 1
   });
   const handleInput = (event) => {
     const inputChanged = event.currentTarget.name;
@@ -44,6 +45,11 @@ function App() {
       setData({
         ...data,
         linkedin:`https://www.linkedin.com/in/${valueChanged}`,
+      });
+    }else if (inputChanged === 'palette'){
+      setData({
+        ...data,
+        palette:valueChanged,
       });
     }
   };
@@ -126,15 +132,16 @@ function App() {
               <label htmlFor="colores" className="form__design--subtitle">
                 Colores
               </label>
-              <ul className="form__design--list">
+              <ul className="form__design--list" onChange={handleInput}>
                 <li className="list__palette first__color">
                   <input
                     type="radio"
                     id="palette"
                     className="list__radio js-input"
-                    name="check__palette"
+                    name="palette"
                     data-id="1"
                     defaultChecked
+                    
                   />
                   <div className="colorOne"></div>
                   <div className="colorTwo"></div>
@@ -146,7 +153,7 @@ function App() {
                     type="radio"
                     id="palette"
                     className="list__radio js-input"
-                    name="check__palette"
+                    name="palette"
                     data-id="2"
                   />
                   <div className="colorOne"></div>
@@ -159,7 +166,7 @@ function App() {
                     type="radio"
                     id="palette"
                     className="list__radio js-input"
-                    name="check__palette"
+                    name="palette"
                     data-id="3"
                   />
                   <div className="colorOne"></div>
