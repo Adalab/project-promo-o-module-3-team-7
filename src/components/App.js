@@ -1,8 +1,53 @@
-import "../styles/App.scss";
-import logoHeader from "../images/logo-awesome-profile-cards.svg";
-import logoFooter from "../images/logo-adalab.png";
+import '../styles/App.scss';
+import logoHeader from '../images/logo-awesome-profile-cards.svg';
+import logoFooter from '../images/logo-adalab.png';
+import { useState } from 'react';
 
 function App() {
+  const [data, setData] = useState({
+    name: '',
+    job: '',
+    email: '',
+    phone: '',
+    github: '',
+    linkedin: '',
+  });
+  const handleInput = (event) => {
+    const inputChanged = event.currentTarget.name;
+    const valueChanged = event.currentTarget.value;
+    if (inputChanged === 'name') {
+      setData({
+        ...data,
+        name: valueChanged,
+      });
+    } else if (inputChanged === 'job') {
+      setData({
+        ...data,
+        job: valueChanged,
+      });
+    } else if (inputChanged === 'email') {
+      setData({
+        ...data,
+        email:`mailto:${valueChanged}`,
+      });
+    }else if (inputChanged === 'phone') {
+      setData({
+        ...data,
+        phone: `tel:${valueChanged}`,
+      });
+    }else if (inputChanged === 'github') {
+      setData({
+        ...data,
+        github:`https://www.github.com/${valueChanged}`,
+      });
+    }else if (inputChanged === 'linkedin'){
+      setData({
+        ...data,
+        linkedin:`https://www.linkedin.com/in/${valueChanged}`,
+      });
+    }
+  };
+
   return (
     <div>
       <header className="header extraClass">
@@ -27,13 +72,17 @@ function App() {
             <div className="preview__card">
               <div className="preview__card--name">
                 <div className="line-palette js__line-palette"></div>
-                <h3 className="preview__card--name name">Vilma Picatecla</h3>
-                <h4 className=" preview__card--name profession">Front-end</h4>
+                <h3 className="preview__card--name name">
+                  {data.name || 'Vilma picatecla'}
+                </h3>
+                <h4 className=" preview__card--name profession">
+                  {data.job || 'Front end'}
+                </h4>
               </div>
               <div className="preview__card--img js__profile-image"></div>
               <div className="preview__card--icons">
                 <div className="card-icons js-iconBorder">
-                  <a className="linkPhone" href="">
+                  <a className="linkPhone" href={data.phone || ''}>
                     <i className="fas fa-mobile-alt js-icon"></i>
                   </a>
                 </div>
@@ -45,7 +94,7 @@ function App() {
                 <div className="card-icons js-iconBorder">
                   <a
                     className="linkedin-js"
-                    href="https://www.linkedin.com/"
+                    href={data.linkedin ||  "https://www.linkedin.com/"}
                     target="_blank"
                   >
                     <i className="fab fa-linkedin-in js-icon"></i>
@@ -55,7 +104,7 @@ function App() {
                   <a
                     href=""
                     className="github-js"
-                    href="https://www.github.com/"
+                    href={data.github ||"https://www.github.com/"}
                     target="_blank"
                   >
                     <i className="fab fa-github-alt js-icon"></i>
@@ -121,8 +170,8 @@ function App() {
             </div>
           </fieldset>
 
-          <fieldset className="form__fill form-js collapsed">
-            <div className="form__fill--sect form-title2-js collapsed">
+          <fieldset className="form__fill form-js ">
+            <div className="form__fill--sect form-title2-js ">
               <i className="far fa-keyboard"></i>
               <h2 className="form__fill--title">Rellena</h2>
               <i className="fas fa-chevron-up js-arrow js-arrow-down"></i>
@@ -138,8 +187,9 @@ function App() {
                 placeholder="Ej: Sally Jill"
                 id="name"
                 type="text"
-                name="fill_name"
+                name="name"
                 required
+                onChange={handleInput}
               />
 
               <label className="label" htmlFor="job">
@@ -152,8 +202,9 @@ function App() {
                 placeholder="Ej: Front-end unicorn"
                 id="job"
                 type="text"
-                name="fill_job"
+                name="job"
                 required
+                onChange={handleInput}
               />
 
               <label className="label" className="form__fill--prftext">
@@ -189,6 +240,7 @@ function App() {
                 title="Por favor, introduzca un email válido"
                 pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[.][a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
                 required
+                onChange={handleInput}
               />
               <label className="label" htmlFor="phone">
                 Teléfono
@@ -199,6 +251,7 @@ function App() {
                 id="phone"
                 type="tel"
                 name="phone"
+                onChange={handleInput}
               />
               <label className="label" htmlFor="linkedin">
                 Linkedin
@@ -212,6 +265,7 @@ function App() {
                 size="30"
                 title="Por favor, introduzca su cuenta de linkedin"
                 required
+                onChange={handleInput}
               />
               <label className="label" htmlFor="github">
                 Github
@@ -224,6 +278,7 @@ function App() {
                 name="github"
                 title="Por favor, introduzca su cuenta de Github"
                 required
+                onChange={handleInput}
               />
             </div>
           </fieldset>
@@ -260,7 +315,7 @@ function App() {
         <small className="footer__small">Awesome profile-cards @2021</small>
         <div className="footer__div">
           <a href="https://adalab.es" target="_blank" alt="logoLink">
-            {" "}
+            {' '}
             <img className="footer__div--img" src={logoFooter} alt="logo" />
           </a>
         </div>
