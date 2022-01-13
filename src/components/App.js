@@ -11,48 +11,22 @@ function App() {
     phone: '',
     github: '',
     linkedin: '',
-    palette: 1
+    palette: "1",
   });
+  
   const handleInput = (event) => {
     const inputChanged = event.currentTarget.name;
     const valueChanged = event.currentTarget.value;
-    if (inputChanged === 'name') {
-      setData({
-        ...data,
-        name: valueChanged,
-      });
-    } else if (inputChanged === 'job') {
-      setData({
-        ...data,
-        job: valueChanged,
-      });
-    } else if (inputChanged === 'email') {
-      setData({
-        ...data,
-        email:`mailto:${valueChanged}`,
-      });
-    }else if (inputChanged === 'phone') {
-      setData({
-        ...data,
-        phone: `tel:${valueChanged}`,
-      });
-    }else if (inputChanged === 'github') {
-      setData({
-        ...data,
-        github:`https://www.github.com/${valueChanged}`,
-      });
-    }else if (inputChanged === 'linkedin'){
-      setData({
-        ...data,
-        linkedin:`https://www.linkedin.com/in/${valueChanged}`,
-      });
-    }else if (inputChanged === 'palette'){
-      setData({
-        ...data,
-        palette:valueChanged,
-      });
-    }
+
+    setData({
+      ...data,
+      [inputChanged]: valueChanged,
+    });
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  }
 
   return (
     <div>
@@ -88,19 +62,27 @@ function App() {
               <div className="preview__card--img js__profile-image"></div>
               <div className="preview__card--icons">
                 <div className="card-icons js-iconBorder">
-                  <a className="linkPhone" href={data.phone || ''}>
+                  <a className="linkPhone" href={`tel:${data.phone}` || ''}>
                     <i className="fas fa-mobile-alt js-icon"></i>
                   </a>
                 </div>
                 <div className="card-icons js-iconBorder">
-                  <a href="mailto:someone@example.com" className="js-email">
+                  <a
+                    href={
+                      `mailto:${data.email}` || 'mailto:someone@example.com'
+                    }
+                    className="js-email"
+                  >
                     <i className="far fa-envelope js-icon"></i>
                   </a>
                 </div>
                 <div className="card-icons js-iconBorder">
                   <a
                     className="linkedin-js"
-                    href={data.linkedin ||  "https://www.linkedin.com/"}
+                    href={
+                      `https://www.linkedin.com/in/${data.linkedin}` ||
+                      'https://www.linkedin.com/'
+                    }
                     target="_blank"
                   >
                     <i className="fab fa-linkedin-in js-icon"></i>
@@ -110,7 +92,10 @@ function App() {
                   <a
                     href=""
                     className="github-js"
-                    href={data.github ||"https://www.github.com/"}
+                    href={
+                      `https://www.github.com/${data.github}` ||
+                      'https://www.github.com/'
+                    }
                     target="_blank"
                   >
                     <i className="fab fa-github-alt js-icon"></i>
@@ -121,7 +106,7 @@ function App() {
           </div>
         </section>
 
-        <form className="form" action="">
+        <form className="form" action="" onSubmit={handleSubmit}>
           <fieldset className="form__design form-js">
             <div className="form__design--sect form-title-js">
               <i className="far fa-object-ungroup"></i>
@@ -132,7 +117,7 @@ function App() {
               <label htmlFor="colores" className="form__design--subtitle">
                 Colores
               </label>
-              <ul className="form__design--list" onChange={handleInput}>
+              <ul className="form__design--list">
                 <li className="list__palette first__color">
                   <input
                     type="radio"
@@ -140,8 +125,9 @@ function App() {
                     className="list__radio js-input"
                     name="palette"
                     data-id="1"
-                    defaultChecked
-                    
+                    value="1"
+                    onChange={handleInput}
+                    checked={data.palette === "1"}
                   />
                   <div className="colorOne"></div>
                   <div className="colorTwo"></div>
@@ -155,6 +141,9 @@ function App() {
                     className="list__radio js-input"
                     name="palette"
                     data-id="2"
+                    value="2"
+                    onChange={handleInput}
+                    checked={data.palette === "2"}
                   />
                   <div className="colorOne"></div>
                   <div className="colorTwo"></div>
@@ -168,6 +157,9 @@ function App() {
                     className="list__radio js-input"
                     name="palette"
                     data-id="3"
+                    value="3"
+                    onChange={handleInput}
+                    checked={data.palette === "3"}
                   />
                   <div className="colorOne"></div>
                   <div className="colorTwo"></div>
@@ -189,7 +181,7 @@ function App() {
               </label>
               <input
                 minLength="2"
-                maxLength="16"
+                maxLength="20"
                 className="contact__form--name js-input"
                 placeholder="Ej: Sally Jill"
                 id="name"
@@ -197,6 +189,7 @@ function App() {
                 name="name"
                 required
                 onChange={handleInput}
+                value={data.name}
               />
 
               <label className="label" htmlFor="job">
@@ -205,16 +198,17 @@ function App() {
               <input
                 className="contact__form--job js-input"
                 minLength="2"
-                maxLength="16"
+                maxLength="20"
                 placeholder="Ej: Front-end unicorn"
                 id="job"
                 type="text"
                 name="job"
                 required
                 onChange={handleInput}
+                value={data.job}
               />
 
-              <label className="label" className="form__fill--prftext">
+              <label className="label form__fill--prftext">
                 Imagen de perfil
               </label>
 
@@ -248,6 +242,7 @@ function App() {
                 pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[.][a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
                 required
                 onChange={handleInput}
+                value={data.email}
               />
               <label className="label" htmlFor="phone">
                 Teléfono
@@ -259,6 +254,7 @@ function App() {
                 type="tel"
                 name="phone"
                 onChange={handleInput}
+                value={data.phone}
               />
               <label className="label" htmlFor="linkedin">
                 Linkedin
@@ -273,6 +269,7 @@ function App() {
                 title="Por favor, introduzca su cuenta de linkedin"
                 required
                 onChange={handleInput}
+                value={data.linkedin}
               />
               <label className="label" htmlFor="github">
                 Github
@@ -286,10 +283,11 @@ function App() {
                 title="Por favor, introduzca su cuenta de Github"
                 required
                 onChange={handleInput}
+                value={data.github}
               />
             </div>
           </fieldset>
-          <fieldset className="form__share form-js collapsed">
+          <fieldset className="form__share form-js">
             <div className="form__share--sect form-title3-js ">
               <i className="fa fa-share-alt"></i>
               <h2 className="form__share--title">Comparte</h2>
