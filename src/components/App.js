@@ -13,7 +13,18 @@ function App() {
     linkedin: '',
     palette: "1",
   });
-  
+
+  const [collapsed, setCollapsed] = useState('')
+
+  const handleCollapsed = () => {
+    if (collapsed === '') {
+      setCollapsed("collapsed")
+    } else {
+      setCollapsed("")
+    }
+    
+  }
+
   const handleInput = (event) => {
     const inputChanged = event.currentTarget.name;
     const valueChanged = event.currentTarget.value;
@@ -107,8 +118,8 @@ function App() {
         </section>
 
         <form className="form" action="" onSubmit={handleSubmit}>
-          <fieldset className="form__design form-js">
-            <div className="form__design--sect form-title-js">
+          <fieldset className={`form__design form-js ${'' || collapsed}`}>
+            <div className="form__design--sect form-title-js" onClick={handleCollapsed}>
               <i className="far fa-object-ungroup"></i>
               <h2 className="form__design--title">Diseña</h2>
               <i className="fas fa-chevron-up js-arrow"></i>
@@ -169,8 +180,8 @@ function App() {
             </div>
           </fieldset>
 
-          <fieldset className="form__fill form-js ">
-            <div className="form__fill--sect form-title2-js ">
+          <fieldset className={`form__fill form-js ${'' || collapsed}`}>
+            <div className="form__fill--sect form-title2-js " onClick={handleCollapsed}>
               <i className="far fa-keyboard"></i>
               <h2 className="form__fill--title">Rellena</h2>
               <i className="fas fa-chevron-up js-arrow js-arrow-down"></i>
@@ -287,8 +298,8 @@ function App() {
               />
             </div>
           </fieldset>
-          <fieldset className="form__share form-js">
-            <div className="form__share--sect form-title3-js ">
+          <fieldset className={`form__share form-js ${'collapsed' || collapsed}`}>
+            <div className="form__share--sect form-title3-js " onClick={handleCollapsed}>
               <i className="fa fa-share-alt"></i>
               <h2 className="form__share--title">Comparte</h2>
               <i className="fas fa-chevron-up js-arrow js-arrow-down"></i>
