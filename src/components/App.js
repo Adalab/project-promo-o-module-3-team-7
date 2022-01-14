@@ -14,16 +14,36 @@ function App() {
     palette: "1",
   });
 
-  const [collapsed, setCollapsed] = useState('')
+  const [collapsedDesign, setCollapsedDesign] = useState('')
 
-  const handleCollapsed = () => {
-    if (collapsed === '') {
-      setCollapsed("collapsed")
+  const handleCollapsedDesign = () => {
+    if (collapsedDesign === '') {
+      setCollapsedDesign("collapsed")
     } else {
-      setCollapsed("")
-    }
-    
+      setCollapsedDesign("")
+    }   
   }
+
+  const [collapsedFill, setCollapsedFill] = useState('collapsed')
+
+  const handleCollapsedFill = () => {
+    if (collapsedFill === '') {
+      setCollapsedFill("collapsed")
+    } else {
+      setCollapsedFill("")
+    }   
+  }
+
+  const [collapsedShare, setCollapsedShare] = useState('collapsed')
+
+  const handleCollapsedShare = () => {
+    if (collapsedShare === '') {
+      setCollapsedShare("collapsed")
+    } else {
+      setCollapsedShare("")
+    }   
+  }
+
 
   const handleInput = (event) => {
     const inputChanged = event.currentTarget.name;
@@ -118,8 +138,8 @@ function App() {
         </section>
 
         <form className="form" action="" onSubmit={handleSubmit}>
-          <fieldset className={`form__design form-js ${'' || collapsed}`}>
-            <div className="form__design--sect form-title-js" onClick={handleCollapsed}>
+          <fieldset className={`form__design form-js ${collapsedDesign}`}>
+            <div className="form__design--sect form-title-js" onClick={handleCollapsedDesign}>
               <i className="far fa-object-ungroup"></i>
               <h2 className="form__design--title">Diseña</h2>
               <i className="fas fa-chevron-up js-arrow"></i>
@@ -180,8 +200,8 @@ function App() {
             </div>
           </fieldset>
 
-          <fieldset className={`form__fill form-js ${'' || collapsed}`}>
-            <div className="form__fill--sect form-title2-js " onClick={handleCollapsed}>
+          <fieldset className={`form__fill form-js ${collapsedFill}`}>
+            <div className="form__fill--sect form-title2-js " onClick={handleCollapsedFill}>
               <i className="far fa-keyboard"></i>
               <h2 className="form__fill--title">Rellena</h2>
               <i className="fas fa-chevron-up js-arrow js-arrow-down"></i>
@@ -298,8 +318,8 @@ function App() {
               />
             </div>
           </fieldset>
-          <fieldset className={`form__share form-js ${'collapsed' || collapsed}`}>
-            <div className="form__share--sect form-title3-js " onClick={handleCollapsed}>
+          <fieldset className={`form__share form-js ${collapsedShare}`}>
+            <div className="form__share--sect form-title3-js " onClick={handleCollapsedShare}>
               <i className="fa fa-share-alt"></i>
               <h2 className="form__share--title">Comparte</h2>
               <i className="fas fa-chevron-up js-arrow js-arrow-down"></i>
