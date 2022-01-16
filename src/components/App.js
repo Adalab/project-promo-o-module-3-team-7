@@ -11,39 +11,72 @@ function App() {
     phone: '',
     github: '',
     linkedin: '',
-    palette: "1",
+    palette: '1',
   });
 
-  const [collapsedDesign, setCollapsedDesign] = useState('')
+  //BUTON RESET
+  const resetBtn = () => {
+    setData({
+      name: '',
+      job: '',
+      email: '',
+      phone: '',
+      github: '',
+      linkedin: '',
+      palette: '1',
+    });
+  };
+
+  //COLAPSABLES
+  const [collapsedDesign, setCollapsedDesign] = useState('');
 
   const handleCollapsedDesign = () => {
     if (collapsedDesign === '') {
-      setCollapsedDesign("collapsed")
+      setCollapsedDesign('collapsed');
     } else {
-      setCollapsedDesign("")
-    }   
-  }
+      setCollapsedDesign('');
+    }
+  };
 
-  const [collapsedFill, setCollapsedFill] = useState('collapsed')
+  const [collapsedFill, setCollapsedFill] = useState('collapsed');
 
   const handleCollapsedFill = () => {
     if (collapsedFill === '') {
-      setCollapsedFill("collapsed")
+      setCollapsedFill('collapsed');
     } else {
-      setCollapsedFill("")
-    }   
-  }
+      setCollapsedFill('');
+    }
+  };
 
-  const [collapsedShare, setCollapsedShare] = useState('collapsed')
+  const [collapsedShare, setCollapsedShare] = useState('collapsed');
 
   const handleCollapsedShare = () => {
     if (collapsedShare === '') {
-      setCollapsedShare("collapsed")
+      setCollapsedShare('collapsed');
     } else {
-      setCollapsedShare("")
-    }   
-  }
+      setCollapsedShare('');
+    }
+  };
 
+  //PALETAS
+
+  const [firstPalette, setFirstPalette] = useState('');
+
+  const handleFirstPalette = (event) => {
+    //event.target.value;
+    if (event.currentTarget.value === '1') {
+      setFirstPalette = 'preview__card--name';
+    }
+  };
+
+  const [secondPalette, setSecondPalette] = useState('');
+
+  const handleSecondPalette = (event) => {
+    //event.target.value;
+    if (event.currentTarget === '2') {
+      setSecondPalette = 'preview__card--name .color2';
+    }
+  };
 
   const handleInput = (event) => {
     const inputChanged = event.currentTarget.name;
@@ -57,7 +90,7 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  }
+  };
 
   return (
     <div>
@@ -73,7 +106,7 @@ function App() {
 
       <main className="preview-main">
         <section className="preview">
-          <button className="preview__button" type="reset">
+          <button className="preview__button" type="reset" onClick={resetBtn}>
             <span>
               <i className="far fa-trash-alt"></i>
             </span>
@@ -139,7 +172,10 @@ function App() {
 
         <form className="form" action="" onSubmit={handleSubmit}>
           <fieldset className={`form__design form-js ${collapsedDesign}`}>
-            <div className="form__design--sect form-title-js" onClick={handleCollapsedDesign}>
+            <div
+              className="form__design--sect form-title-js"
+              onClick={handleCollapsedDesign}
+            >
               <i className="far fa-object-ungroup"></i>
               <h2 className="form__design--title">Diseña</h2>
               <i className="fas fa-chevron-up js-arrow"></i>
@@ -158,7 +194,8 @@ function App() {
                     data-id="1"
                     value="1"
                     onChange={handleInput}
-                    checked={data.palette === "1"}
+                    checked={data.palette === '1'}
+                    onClick={handleFirstPalette}
                   />
                   <div className="colorOne"></div>
                   <div className="colorTwo"></div>
@@ -174,7 +211,8 @@ function App() {
                     data-id="2"
                     value="2"
                     onChange={handleInput}
-                    checked={data.palette === "2"}
+                    checked={data.palette === '2'}
+                    onClick={handleSecondPalette}
                   />
                   <div className="colorOne"></div>
                   <div className="colorTwo"></div>
@@ -190,7 +228,7 @@ function App() {
                     data-id="3"
                     value="3"
                     onChange={handleInput}
-                    checked={data.palette === "3"}
+                    checked={data.palette === '3'}
                   />
                   <div className="colorOne"></div>
                   <div className="colorTwo"></div>
@@ -201,7 +239,10 @@ function App() {
           </fieldset>
 
           <fieldset className={`form__fill form-js ${collapsedFill}`}>
-            <div className="form__fill--sect form-title2-js " onClick={handleCollapsedFill}>
+            <div
+              className="form__fill--sect form-title2-js "
+              onClick={handleCollapsedFill}
+            >
               <i className="far fa-keyboard"></i>
               <h2 className="form__fill--title">Rellena</h2>
               <i className="fas fa-chevron-up js-arrow js-arrow-down"></i>
@@ -319,7 +360,10 @@ function App() {
             </div>
           </fieldset>
           <fieldset className={`form__share form-js ${collapsedShare}`}>
-            <div className="form__share--sect form-title3-js " onClick={handleCollapsedShare}>
+            <div
+              className="form__share--sect form-title3-js "
+              onClick={handleCollapsedShare}
+            >
               <i className="fa fa-share-alt"></i>
               <h2 className="form__share--title">Comparte</h2>
               <i className="fas fa-chevron-up js-arrow js-arrow-down"></i>
