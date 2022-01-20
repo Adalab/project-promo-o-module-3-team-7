@@ -1,20 +1,22 @@
 function InputString(props) {
   const handleChangeInput = (ev) => {
+    
     props.handleInput(ev.currentTarget.name, ev.currentTarget.value);
   };
   return (
     <>
-      <label className="label" htmlFor="name">
-        Nombre completo
+      <label className="label" htmlFor={props.name}>
+      {props.label}
       </label>
       <input
-        minLength="2"
-        maxLength="20"
-        className="contact__form--name js-input"
-        placeholder="Ej: Sally Jill"
+/*         minLength="2"
+        maxLength="20" */
+        className="input js-input"
+        placeholder={props.placeholder}
         id={props.name}
-        type="text"
+        type={props.type}
         name={props.name}
+        pattern={props.pattern}
         required
         onChange={handleChangeInput}
         value={props.value}

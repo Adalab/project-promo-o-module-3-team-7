@@ -1,36 +1,36 @@
-import { useState } from "react";
-import "../../styles/componentes/Form.scss";
-import InputString from "./InputString";
+import { useState } from 'react';
+import '../../styles/componentes/Form.scss';
+import InputString from './InputString';
 
 const Form = (props) => {
   //COLAPSABLES
-  const [collapsedDesign, setCollapsedDesign] = useState("");
+  const [collapsedDesign, setCollapsedDesign] = useState('');
 
   const handleCollapsedDesign = () => {
-    if (collapsedDesign === "") {
-      setCollapsedDesign("collapsed");
+    if (collapsedDesign === '') {
+      setCollapsedDesign('collapsed');
     } else {
-      setCollapsedDesign("");
+      setCollapsedDesign('');
     }
   };
 
-  const [collapsedFill, setCollapsedFill] = useState("collapsed");
+  const [collapsedFill, setCollapsedFill] = useState('collapsed');
 
   const handleCollapsedFill = () => {
-    if (collapsedFill === "") {
-      setCollapsedFill("collapsed");
+    if (collapsedFill === '') {
+      setCollapsedFill('collapsed');
     } else {
-      setCollapsedFill("");
+      setCollapsedFill('');
     }
   };
 
-  const [collapsedShare, setCollapsedShare] = useState("collapsed");
+  const [collapsedShare, setCollapsedShare] = useState('collapsed');
 
   const handleCollapsedShare = () => {
-    if (collapsedShare === "") {
-      setCollapsedShare("collapsed");
+    if (collapsedShare === '') {
+      setCollapsedShare('collapsed');
     } else {
-      setCollapsedShare("");
+      setCollapsedShare('');
     }
   };
 
@@ -63,7 +63,7 @@ const Form = (props) => {
                 data-id="1"
                 value="1"
                 onChange={props.handleInput}
-                checked={props.data.palette === "1"}
+                checked={props.data.palette === '1'}
                 //onClick={handleFirstPalette}
               />
               <div className="colorOne"></div>
@@ -80,7 +80,7 @@ const Form = (props) => {
                 data-id="2"
                 value="2"
                 onChange={props.handleInput}
-                checked={props.data.palette === "2"}
+                checked={props.data.palette === '2'}
                 //onClick={handleSecondPalette}
               />
               <div className="colorOne"></div>
@@ -97,7 +97,7 @@ const Form = (props) => {
                 data-id="3"
                 value="3"
                 onChange={props.handleInput}
-                checked={props.data.palette === "3"}
+                checked={props.data.palette === '3'}
               />
               <div className="colorOne"></div>
               <div className="colorTwo"></div>
@@ -120,24 +120,19 @@ const Form = (props) => {
           <InputString
             handleInput={props.handleInput}
             value={props.data.name}
+            name={'name'}
+            label={'Nombre completo'}
+            placeholder={'Ej: Sally Jill'}
+            type={'text'}
           />
-
-          <label className="label" htmlFor="job">
-            Puesto
-          </label>
-          <input
-            className="contact__form--job js-input"
-            minLength="2"
-            maxLength="20"
-            placeholder="Ej: Front-end unicorn"
-            id="job"
-            type="text"
-            name="job"
-            required
-            onChange={props.handleInput}
+          <InputString
+            handleInput={props.handleInput}
             value={props.data.job}
+            name={'job'}
+            label={'Puesto'}
+            placeholder={'Ej: Front-end unicorn'}
+            type={'text'}
           />
-
           <label className="label form__fill--prftext">Imagen de perfil</label>
 
           <div className="form__image">
@@ -154,61 +149,40 @@ const Form = (props) => {
             <div className="form__square js__profile-preview"></div>
           </div>
 
-          <label className="label" htmlFor="email">
-            Email
-          </label>
-          <input
-            className="contact__form--mail js-input"
-            placeholder="Ej: nombre.apellidos@mail.com"
-            id="email"
-            type="mail"
-            name="email"
-            title="Por favor, introduzca un email válido"
-            pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[.][a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
-            required
-            onChange={props.handleInput}
+          <InputString
+            handleInput={props.handleInput}
             value={props.data.email}
+            name={'email'}
+            label={'Email'}
+            placeholder={'Ej: nombre.apellidos@mail.com'}
+            type={'email'}
+            pattern={
+              "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[.][a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
+            }
           />
-          <label className="label" htmlFor="phone">
-            Teléfono
-          </label>
-          <input
-            className="contact__form--phone js-input"
-            placeholder="Ej: 123456789"
-            id="phone"
-            type="tel"
-            name="phone"
-            onChange={props.handleInput}
+          <InputString
+            handleInput={props.handleInput}
             value={props.data.phone}
+            name={'phone'}
+            label={'Teléfono'}
+            placeholder={'Ej: 123456789'}
+            type={'tel'}
           />
-          <label className="label" htmlFor="linkedin">
-            Linkedin
-          </label>
-          <input
-            className="contact__form--linkedin js-input"
-            placeholder="Ej: ada.lovelace"
-            id="linkedin"
-            type="linkedin"
-            name="linkedin"
-            size="30"
-            title="Por favor, introduzca su cuenta de linkedin"
-            required
-            onChange={props.handleInput}
+          <InputString
+            handleInput={props.handleInput}
             value={props.data.linkedin}
+            name={'linkedin'}
+            label={'Linkedin'}
+            placeholder={'Ej: ada.lovelace'}
+            type={'text'}
           />
-          <label className="label" htmlFor="github">
-            Github
-          </label>
-          <input
-            className="contact__form--github js-input github-js"
-            placeholder="Ej: Ada-Lovelace"
-            id="github"
-            type="github"
-            name="github"
-            title="Por favor, introduzca su cuenta de Github"
-            required
-            onChange={props.handleInput}
+          <InputString
+            handleInput={props.handleInput}
             value={props.data.github}
+            name={'github'}
+            label={'Github'}
+            placeholder={'Ej: Ada-Lovelace'}
+            type={'text'}
           />
         </div>
       </fieldset>
