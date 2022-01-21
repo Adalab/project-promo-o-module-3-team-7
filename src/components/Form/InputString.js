@@ -6,7 +6,7 @@ function InputString(props) {
   return (
     <>
       <label className="label" htmlFor={props.name}>
-      {props.label}
+      {props.label} { props.required ? "*" : null }
       </label>
       <input
 /*         minLength="2"
@@ -17,7 +17,7 @@ function InputString(props) {
         type={props.type}
         name={props.name}
         pattern={props.pattern}
-        required
+        required={props.required}
         onChange={handleChangeInput}
         value={props.value}
       />

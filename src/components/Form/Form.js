@@ -124,6 +124,7 @@ const Form = (props) => {
             label={'Nombre completo'}
             placeholder={'Ej: Sally Jill'}
             type={'text'}
+            required={true}
           />
           <InputString
             handleInput={props.handleInput}
@@ -132,6 +133,7 @@ const Form = (props) => {
             label={'Puesto'}
             placeholder={'Ej: Front-end unicorn'}
             type={'text'}
+            required={true}
           />
           <label className="label form__fill--prftext">Imagen de perfil</label>
 
@@ -159,6 +161,7 @@ const Form = (props) => {
             pattern={
               "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[.][a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
             }
+            required={true}
           />
           <InputString
             handleInput={props.handleInput}
@@ -175,6 +178,7 @@ const Form = (props) => {
             label={'Linkedin'}
             placeholder={'Ej: ada.lovelace'}
             type={'text'}
+            required={true}
           />
           <InputString
             handleInput={props.handleInput}
@@ -183,6 +187,7 @@ const Form = (props) => {
             label={'Github'}
             placeholder={'Ej: Ada-Lovelace'}
             type={'text'}
+            required={true}
           />
         </div>
       </fieldset>
