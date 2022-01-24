@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import Form from "./Form/Form";
 import Preview from "./Preview";
 
+
 function App() {
   const [data, setData] = useState({
     name: "",
@@ -16,6 +17,12 @@ function App() {
     linkedin: "",
     palette: "1",
   });
+
+  //INPUT FILE
+  const [avatar, setAvatar] = useState('');
+  const updateAvatar = (avatar) => {
+    setAvatar(avatar);
+  };
 
   //BUTON RESET
   const resetBtn = () => {
@@ -64,7 +71,7 @@ function App() {
       <Header />
       <main className="preview-main">
         <Preview data={data} resetBtn={resetBtn} />
-        <Form data={data} handleInput={handleInput} />
+        <Form data={data} handleInput={handleInput} avatar={avatar} updateAvatar={updateAvatar}/>
       </main>
       <Footer />
     </div>

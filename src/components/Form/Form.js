@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import '../../styles/componentes/Form.scss';
 import InputString from './InputString';
+import InputFile from './InputFile';
 
 const Form = (props) => {
   //COLAPSABLES
@@ -135,22 +136,9 @@ const Form = (props) => {
             type={'text'}
             required={true}
           />
-          <label className="label form__fill--prftext">Imagen de perfil</label>
 
-          <div className="form__image">
-            <label htmlFor="photo" className="form__btnimg js__profile-trigger">
-              Añadir imagen
-            </label>
-            <input
-              type="file"
-              className="js__profile-upload-btn hidden js-input"
-              name="photo"
-              id="photo"
-              required
-            />
-            <div className="form__square js__profile-preview"></div>
-          </div>
-
+          <InputFile avatar={props.avatar} updateAvatar={props.updateAvatar}/>
+          
           <InputString
             handleInput={props.handleInput}
             value={props.data.email}
