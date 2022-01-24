@@ -1,4 +1,5 @@
-import '../styles/componentes/Preview.scss';
+import '../../styles/componentes/Preview.scss';
+import ImagePreview from './ImagePreview';
 
 const Preview = (props) => {
   return (
@@ -20,7 +21,7 @@ const Preview = (props) => {
             {props.data.job || 'Front end'}
           </h4>
         </div>
-        <div className="preview__card--img js__profile-image"></div>
+        <ImagePreview avatar={props.avatar}/>
         <div className="preview__card--icons">
           <div className="card-icons js-iconBorder">
             <a className="linkPhone" href={`tel:${props.data.phone}` || ''}>
@@ -45,19 +46,20 @@ const Preview = (props) => {
                 'https://www.linkedin.com/'
               }
               target="_blank"
+              rel="noreferrer"
             >
               <i className="fab fa-linkedin-in js-icon"></i>
             </a>
           </div>
           <div className="card-icons js-iconBorder">
             <a
-              href=""
               className="github-js"
               href={
                 `https://www.github.com/${props.data.github}` ||
                 'https://www.github.com/'
               }
               target="_blank"
+              rel="noreferrer"
             >
               <i className="fab fa-github-alt js-icon"></i>
             </a>

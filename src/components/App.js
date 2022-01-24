@@ -4,7 +4,7 @@ import { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Form from "./Form/Form";
-import Preview from "./Preview";
+import Preview from "./Preview/Preview";
 
 
 function App() {
@@ -70,7 +70,7 @@ function App() {
     <div>
       <Header />
       <main className="preview-main">
-        <Preview data={data} resetBtn={resetBtn} />
+        <Preview data={data} resetBtn={resetBtn} avatar={avatar}/>
         <Form data={data} handleInput={handleInput} avatar={avatar} updateAvatar={updateAvatar}/>
       </main>
       <Footer />
